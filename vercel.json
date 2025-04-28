@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "NPM_FLAGS": "--legacy-peer-deps"
+    },
+    "commands": {
+      "build": "npm ci"
+    }
+  }
+}
