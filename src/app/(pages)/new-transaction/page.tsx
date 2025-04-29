@@ -113,7 +113,7 @@ const TranPage = () => {
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 flex items-center justify-center rounded-md shadow-md hover:bg-blue-700 transition duration-300 ease-in-out"
             >
-              {isLoading ? <Loader /> : "submit"}
+              {isLoading ? <Loader className="animate-spin" /> : "submit"}
             </button>
           </div>
         </form>

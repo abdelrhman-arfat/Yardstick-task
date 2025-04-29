@@ -5,7 +5,8 @@ import { TDate } from "@/app/types/Data";
 import { TableLoop } from "../TableLoop";
 import { PlusCircle, PlusIcon } from "lucide-react";
 import Link from "next/link";
-import ChartWithCategory from "../ChartWithCategory";
+import CategoryChartSection from "./CategoryChartSection";
+import { getLatestTransactions } from "@/app/utils/getLatestTransactions";
 
 const HeroSection = ({
   data,
@@ -14,7 +15,7 @@ const HeroSection = ({
   data: TDate[] | null;
   getTran: () => Promise<void>;
 }) => {
-  if (data?.length === 0) {
+  if (data?.length === 0 || data == null) {
     return (
       <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-lg border border-gray-200">
         <svg
@@ -44,12 +45,7 @@ const HeroSection = ({
     );
   }
 
-  const getLatestTransactions = () => {
-    if (data?.length === 0) return [];
-    return [...(data || [])]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 5);
-  };
+  const latestDate = getLatestTransactions(data);
   return (
     <div className="w-full flex flex-col items-center gap-10">
       <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent py-4 mb-2 text-center relative">
@@ -59,7 +55,7 @@ const HeroSection = ({
       {Array.isArray(data) && (
         <div className="w-full">
           <div className="w-full items-center md:justify-between flex flex-col md:flex-row gap-3 sm:gap-5">
-            <div className=" w-full  md:min-h-[300px] bg-neutral-50 rounded-md shadow-sm text-center">
+            <div className=" w-full  md:min-h-[300px] bg-neutral-50 rounded-xl overflow-hidden shadow-md text-center">
               <h2 className="text-xl font-semibold text-gray-800 mb-4 pt-4 px-4">
                 Monthly Expense Chart
               </h2>
@@ -67,20 +63,15 @@ const HeroSection = ({
                 <MonthlyExpensesChart data={data} />
               </div>
             </div>
-            <div className=" w-full  md:min-h-[570px] bg-neutral-50 rounded-md shadow-sm text-center">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4 pt-4 px-4">
-                Monthly Expense Category Chart
-              </h2>{" "}
-              <ChartWithCategory data={data} />
-            </div>
+            <CategoryChartSection data={data} />
           </div>
           {data.length > 0 && (
             <div className="flex py-3 flex-col gap-2 mt-4 w-full">
               <div className="flex items-center justify-center gap-4 relative">
-                <h1 className="text-2xl font-bold text-center py-4 px-5 my-3 relative z-10">
+                <h1 className="sm:text-2xl font-bold text-center px-1 py-1.5 sm:py-4 sm:px-5 my-3 relative z-10">
                   <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600  opacity-60 rounded-xl"></span>
                   <span className="relative z-20 text-white">
-                    Most Recent 5 Transactions
+                    Most Recent {latestDate.length} Transactions
                   </span>
                 </h1>
                 <Link
@@ -90,8 +81,16 @@ const HeroSection = ({
                   <PlusIcon className="text-purple-600 hover:text-blue-500 transition-colors duration-200" />
                 </Link>
               </div>
-
-              <TableLoop getFunc={getTran} data={getLatestTransactions()} />
+              <div>
+                <h1 className="text-base sm:text-lg md:text-xl text-center text-gray-700 font-medium px-4 py-2 bg-gray-50 rounded-lg shadow-sm">
+                  Total Transactions :
+                  <span className="font-bold text-purple-600">
+                    {" "}
+                    {data.length}
+                  </span>
+                </h1>
+              </div>
+              <TableLoop getFunc={getTran} data={latestDate} />
             </div>
           )}
         </div>
