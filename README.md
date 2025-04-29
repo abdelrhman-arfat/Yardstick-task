@@ -5,6 +5,10 @@ A modern web application for tracking and visualizing your financial transaction
 ## 🚀 Features
 
 - 💰 Track income and expenses
+- 📅 View transaction history
+- 📊 Real-time category-wise and monthly charts
+- 🧾 Dashboard with recent transactions and summaries
+- 🛠️ Budgeting system with customizable category budgets and visual comparison
 
 ## 🛠️ Tech Stack
 
