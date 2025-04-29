@@ -6,6 +6,7 @@ import { TDate } from "@/app/types/Data";
 import CalendarForm from "../CalendarForm";
 import toast from "react-hot-toast";
 import { axiosInstance } from "@/app/utils/axiosInstance";
+import CategoryDropMenu from "../CategoryDropMenu";
 
 const UpdateTran = ({
   getFunc,
@@ -15,8 +16,8 @@ const UpdateTran = ({
   tran: TDate;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [category, setCategory] = useState<string>(tran.category);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -28,6 +29,7 @@ const UpdateTran = ({
       amount: formData.get("amount"),
       date: date,
       tranId: tran._id,
+      category,
     };
 
     toast
@@ -37,6 +39,7 @@ const UpdateTran = ({
           amount: updatedData.amount,
           date: updatedData.date,
           tranId: tran._id,
+          category,
         }),
         {
           loading: "Updating...",
@@ -80,7 +83,12 @@ const UpdateTran = ({
                 <div className="my-2 font-bold bg-gray-100 py-2 px-4 w-fit rounded-[10px] ">
                   <h1>Date is {new Date(tran.date).toDateString()}</h1>
                 </div>
-                <CalendarForm date={date} setDate={setDate} />
+                <div className="my-3">
+                  <CalendarForm date={date} setDate={setDate} />
+                </div>
+                <div className="my-3">
+                  <CategoryDropMenu value={category} setValue={setCategory} />
+                </div>
 
                 <div className="flex flex-col mb-4">
                   <label

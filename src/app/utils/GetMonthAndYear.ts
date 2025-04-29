@@ -1,3 +1,5 @@
 export const getMonthAndYear = () => {
-  return new Date().getMonth() + "/" + new Date().getFullYear();
+  const month = new Date().getMonth() + 1;
+
+  return `${month} /${new Date().getFullYear()}`;
 };

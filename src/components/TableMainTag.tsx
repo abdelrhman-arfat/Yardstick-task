@@ -6,10 +6,11 @@ const TableMainTag = ({ children }: { children: React.ReactNode }) => {
     <Table className="min-w-full border-collapse rounded-lg overflow-hidden shadow-lg">
       <TableHeader>
         <TableRow className="border-b border-gray-300">
-          <TableHead>No.</TableHead> {/* Add a TableHead for the row number */}
+          <TableHead>No.</TableHead>
           <TableHead>Description</TableHead>
+          <TableHead className="hidden md:table-cell">Category</TableHead>
           <TableHead>Amount</TableHead>
-          <TableHead>Date</TableHead>
+          <TableHead className="hidden md:table-cell">Date</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>

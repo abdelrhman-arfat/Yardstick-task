@@ -1,4 +1,4 @@
-import { Home, BadgePlus, Wallet } from "lucide-react";
+import { Home, BadgePlus, Wallet, List } from "lucide-react";
 import Link from "next/link";
 import {
   Sidebar,
@@ -18,6 +18,11 @@ const items = [
     icon: Home,
   },
 
+  {
+    title: "All Transactions",
+    url: "/all-transaction",
+    icon: List,
+  },
   {
     title: "Add new Transaction",
     url: "/new-transaction",

@@ -28,7 +28,7 @@ export default function RootLayout({
         <SidebarProvider>
           <Toaster position="top-center" reverseOrder={false} />
           <AppSidebar />
-          <main className="w-full px-2 sm:px-10">
+          <main className="w-full py-10 px-2 sm:px-10">
             <SidebarTrigger size={"icon"} />
             <SetUserID />
             {children}

@@ -22,16 +22,19 @@ export function TableLoop({
               key={index}
               className="border-b border-gray-200 transition-colors duration-300 hover:bg-gray-100"
             >
-              <TableCell className="text-left  text-gray-700">
+              <TableCell className="text-left text-gray-700">
                 {index + 1 + " -"}
               </TableCell>
-              <TableCell className="text-left line-clamp-2 max-h-[50px] sm:min-h-[30px] py-3 px-6 text-gray-700">
+              <TableCell className="text-left line-clamp-1 max-h-[40px] min-h-[30px] py-3 px-6 text-gray-700">
                 {tran.description}
+              </TableCell>
+              <TableCell className="hidden md:table-cell text-left py-3 px-6 text-gray-700">
+                {tran.category}
               </TableCell>
               <TableCell className="text-left py-3 px-6 text-gray-700">
                 $ {tran.amount}
               </TableCell>
-              <TableCell className="text-left py-3 px-6 text-gray-700">
+              <TableCell className="hidden md:table-cell text-left py-3 px-6 text-gray-700">
                 {new Date(tran.date).toLocaleDateString()}
               </TableCell>
               <TableCell className="text-left py-3 px-6 text-gray-700">

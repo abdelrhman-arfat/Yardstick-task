@@ -62,9 +62,9 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!body.description || !body.amount) {
+  if (!body.description || !body.amount || !body.amount) {
     return NextResponse.json(
-      { message: "description and amount  required", data: null },
+      { message: "description , amount and category are required", data: null },
       { status: 400 }
     );
   }
@@ -111,13 +111,14 @@ export async function PUT(request: Request) {
     await dbConnect();
 
     // Attempt to update the transaction
-    const updatedTransaction = await Transaction.findByIdAndUpdate(
+    const updatedTransaction = await Transaction.findOneAndUpdate(
       { _id: body.tranId, userId },
       {
         $set: {
           date: body.date,
           description: body.description,
           amount: body.amount,
+          category: body.category.toLowerCase(),
         },
       },
       { new: true }
