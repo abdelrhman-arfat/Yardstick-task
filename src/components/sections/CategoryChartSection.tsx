@@ -13,7 +13,7 @@ const CategoryChartSection = ({ data }: { data: TDate[] }) => {
       : {
           food: 0,
           entertainment: 0,
-          transportation: 0,
+          transport: 0,
           shopping: 0,
           other: 0,
         };
