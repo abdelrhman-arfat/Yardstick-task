@@ -30,7 +30,7 @@ A modern web application for tracking and visualizing your financial transaction
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/transaction-tracker.git
+git clone https://github.com/abdelrhman-arfat/Yardstick-task.git
 ```
 
 2. Run the app:
